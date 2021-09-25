@@ -10,3 +10,13 @@ async componentDidMount() {
 
 
 https://mui-treasury.com/components/
+
+
+ see the cursor movement is smooth while typing and its awesome, how to do that?
+ 
+Some settings to look at in settings.json:
+"editor.cursorBlinking": "smooth"
+"editor.smoothScrolling": true
+"editor.cursorSmoothCaretAnimation": true
+
+Or search for "smooth" and "blinking" in the Settings.
