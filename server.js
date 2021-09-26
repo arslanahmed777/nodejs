@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 var cors = require("cors");
+const mongoose = require("mongoose");
 
 // importing Routers
 const friendRouter = require("./routes/friends.routes");
@@ -11,7 +12,7 @@ const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`listning on port ${PORT}`);
 });
-var whitelist = ["http://localhost:3000", "http://example2.com"];
+var whitelist = ["http://localhost:5000", "http://example2.com"];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -21,7 +22,8 @@ var corsOptions = {
     }
   },
 };
-app.use(cors(corsOptions));
+app.use(cors());
+
 // ====== This is a main middleware that logs our request =====
 app.use((req, res, next) => {
   const start = Date.now();
@@ -33,6 +35,16 @@ app.use((req, res, next) => {
 // ====== ************************* =====
 app.use("/site", express.static(path.join(__dirname, "public")));
 app.use(express.json());
+
+mongoose.connect("mongodb://localhost:27017/merncrud");
+const db = mongoose.connection;
+db.on("err", (err) => {
+  console.log(err);
+});
+
+db.once("open", () => {
+  console.log("Database Connection established");
+});
 
 app.use("/friends", friendRouter);
 app.use("/chart", chartRouter);
