@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 // importing Routers
 const friendRouter = require("./routes/friends.routes");
 const chartRouter = require("./routes/chart.routes");
+const signinRouter = require("./routes/signin.routes");
 
 const app = express();
 const PORT = 5000;
@@ -36,7 +37,9 @@ app.use((req, res, next) => {
 app.use("/site", express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/merncrud");
+mongoose.connect("mongodb://localhost:27017/merncrud", {
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 db.on("err", (err) => {
   console.log(err);
@@ -48,3 +51,4 @@ db.once("open", () => {
 
 app.use("/friends", friendRouter);
 app.use("/chart", chartRouter);
+app.use("/signin", signinRouter);
