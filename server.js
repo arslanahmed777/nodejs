@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 app.use("/site", express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/merncrud", {
+mongoose.connect("mongodb://localhost:27017/testdb", {
   useUnifiedTopology: true,
 });
 const db = mongoose.connection;
