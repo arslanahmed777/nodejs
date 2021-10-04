@@ -1,29 +1,27 @@
-const AdmZip = require('adm-zip');
-var fs = require('fs');
-var uploadDir = fs.readdirSync(__dirname + "/uploads");
+const AdmZip = require("adm-zip");
+var fs = require("fs");
+const path = require("path");
+
 function getzip(req, res) {
-    const zip = new AdmZip();
-    for (var i = 0; i < uploadDir.length; i++) {
-        zip.addLocalFile(__dirname + "/uploads/" + uploadDir[i]);
-    }
-    // Define zip file name
-    const downloadName = `${Date.now()}.zip`;
+  const zip = new AdmZip();
+  const uploadsPath = path.join(__dirname, "..", "uploads");
+  var uploadDir = fs.readdirSync(uploadsPath);
+  for (var i = 0; i < uploadDir.length; i++) {
+    zip.addLocalFile(path.join(__dirname, "..", "uploads", uploadDir[i]));
+  }
+  // Define zip file name
+  const downloadName = `${Date.now()}.zip`;
+  const data = zip.toBuffer();
 
-    const data = zip.toBuffer();
+  // save file zip in root directory
+  // zip.writeZip(path.join(__dirname, "..", "zipfiles", downloadName));
 
-    // save file zip in root directory
-    // zip.writeZip(__dirname + "/" + downloadName);
+  res.set("Content-Type", "application/octet-stream");
+  res.set("Content-Disposition", `attachment; filename=${downloadName}`);
+  res.set("Content-Length", data.length);
 
-    // code to download zip file
-
-    res.set('Content-Type', 'application/octet-stream');
-    res.set('Content-Disposition', `attachment; filename=${downloadName}`);
-    res.set('Content-Length', data.length);
-    res.send(data);
-
-
+  res.send(data);
 }
 module.exports = {
-    getzip,
-
+  getzip,
 };

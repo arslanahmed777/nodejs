@@ -4,8 +4,6 @@ var cors = require("cors");
 const mongoose = require("mongoose");
 
 // importing Routers
-const friendRouter = require("./routes/friends.routes");
-const chartRouter = require("./routes/chart.routes");
 const signinRouter = require("./routes/signin.routes");
 const zipRouter = require("./routes/zip.router");
 
@@ -50,7 +48,5 @@ db.once("open", () => {
   console.log("Database Connection established");
 });
 
-app.use("/friends", friendRouter);
-app.use("/chart", chartRouter);
 app.use("/signin", signinRouter);
 app.use("/zip", zipRouter);
