@@ -1,14 +1,16 @@
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 var cors = require("cors");
 const mongoose = require("mongoose");
+
 
 // importing Routers
 const signinRouter = require("./routes/signin.routes");
 const zipRouter = require("./routes/zip.router");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`listning on port ${PORT}`);
 });
