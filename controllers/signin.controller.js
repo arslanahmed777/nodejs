@@ -5,13 +5,17 @@ const jwt = require("jsonwebtoken");
 const Users = require("../models/signin.model");
 
 async function signin(req, res) {
-
   const { email, password } = req.body;
   const user = await Users.findOne({ email: email });
-  if (!user) { return res.status(200).json({ error: "Unauthorized" }); }
+  if (!user) {
+    return res.status(200).json({
+      error:
+        "There is no user record corresponding to this identifier. The user may have been deleted.",
+    });
+  }
   try {
     const match = password === user.password;
-    if (!match) return res.send({ error: "password not matched" });
+    if (!match) return res.send({ error: "Wrong password entered" });
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET_KEY, {
       expiresIn: "1h",
     });
