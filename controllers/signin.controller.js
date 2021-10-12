@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
 // importing models
-const Users = require("../models/signin.model");
+const Users = require("../models/users.model");
 
 async function signin(req, res) {
   const { email, password } = req.body;

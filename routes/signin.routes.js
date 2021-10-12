@@ -6,7 +6,7 @@ const signinController = require("../controllers/signin.controller");
 
 // signin middleware
 SigninRouter.use((req, res, next) => {
-  console.log("sign router midddleware run");
+  console.log("signin router midddleware run");
   next();
 });
 SigninRouter.post("/", signinController.signin);

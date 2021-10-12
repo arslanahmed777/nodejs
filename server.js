@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 // importing Routers
 const signinRouter = require("./routes/signin.routes");
+const signupRouter = require("./routes/signup.routes")
 const zipRouter = require("./routes/zip.router");
 
 const app = express();
@@ -51,4 +52,5 @@ db.once("open", () => {
 });
 
 app.use("/signin", signinRouter);
+app.use("/signup", signupRouter)
 app.use("/zip", zipRouter);
