@@ -53,4 +53,5 @@ db.once("open", () => {
 
 app.use("/signin", signinRouter);
 app.use("/signup", signupRouter)
+//app.use("/updateprofile", signupRouter)
 app.use("/zip", zipRouter);
