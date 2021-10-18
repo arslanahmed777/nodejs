@@ -114,3 +114,4 @@ router.post("/signup", (req, res) => {
 
 module.exports = router;
 
+for progressbar https://flexiple.com/javascript-check-if-function/
