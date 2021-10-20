@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const signinRouter = require("./routes/signin.routes");
 const signupRouter = require("./routes/signup.routes")
 const zipRouter = require("./routes/zip.router");
+const updateProfileRouter = require("./routes/updateProfile.routes")
 
 const app = express();
 const PORT = process.env.PORT;
@@ -53,5 +54,5 @@ db.once("open", () => {
 
 app.use("/signin", signinRouter);
 app.use("/signup", signupRouter)
-//app.use("/updateprofile", signupRouter)
+app.use("/updateprofile", updateProfileRouter)
 app.use("/zip", zipRouter);
