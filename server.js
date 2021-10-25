@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require("express");
+const http = require("http")
 const path = require("path");
 var cors = require("cors");
 const mongoose = require("mongoose");
+const socketio = require("socket.io")
 
 
 // importing Routers
@@ -12,11 +14,35 @@ const zipRouter = require("./routes/zip.router");
 const updateProfileRouter = require("./routes/updateProfile.routes")
 
 const app = express();
+
+const server = http.createServer(app);
+
+const io = socketio(server, { cors: { origin: "*" } })
+
+// Run when client connects
+io.on('connection', (socket) => {
+  console.log("We have new connection");
+
+  socket.on("join", ({ name }, callback) => {
+    console.log("params", name);
+    callback(name)
+  })
+
+  socket.on("sendMessage", (data) => {
+    console.log(data);
+    socket.broadcast.emit("message", data)
+  })
+
+  socket.on('disconnect', () => {
+    console.log("User has left");
+  })
+})
+
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`listning on port ${PORT}`);
 });
-var whitelist = ["http://localhost:5000", "http://example2.com"];
+var whitelist = ["http://192.168.104.156:5000", "http://example2.com"];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
