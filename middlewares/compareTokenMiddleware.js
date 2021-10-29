@@ -1,4 +1,3 @@
-const express = require("express");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
@@ -15,7 +14,6 @@ module.exports = async (req, res, next) => {
         return res.json({ error: "Token is not valid", });
       }
       req.decoded = decoded;
-
       next();
     });
   } else {
