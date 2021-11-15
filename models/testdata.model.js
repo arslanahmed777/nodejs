@@ -3,9 +3,6 @@ const mongoose = require("mongoose");
 
 const testdataSchema = new mongoose.Schema(
     {
-        _id: {
-            type: Number,
-        },
         first_name: {
             type: String,
         },
@@ -18,8 +15,8 @@ const testdataSchema = new mongoose.Schema(
         gender: {
             type: String,
         },
-        ip_address: {
-            type: String,
+        access_date: {
+            type: Date,
         },
 
     },

@@ -12,6 +12,8 @@ TestdataRouter.use(checkUser, (req, res, next) => {
     console.log("testdata router midddleware run");
     next();
 });
-TestdataRouter.post("/", testdataController.testdate);
+TestdataRouter.post("/gettestdata", testdataController.gettestdata);
+TestdataRouter.post("/addtestdata", testdataController.addtestdata);
+TestdataRouter.delete("/deletetestdata/:id", testdataController.deletetestdata)
 
 module.exports = TestdataRouter;

@@ -13,6 +13,7 @@ const signupRouter = require("./routes/signup.routes")
 const zipRouter = require("./routes/zip.router");
 const updateProfileRouter = require("./routes/updateProfile.routes")
 const testDataRouter = require("./routes/testdata.routes")
+const blogsRouter = require("./routes/blogs.routes")
 
 const app = express();
 
@@ -31,8 +32,9 @@ io.on('connection', (socket) => {
 
   socket.on("sendMessage", (data) => {
     console.log(data);
-    socket.emit("message", data)
-    socket.broadcast.emit("message", data)
+    // socket.emit("message", data)
+    // socket.broadcast.emit("message", data)
+    io.emit("message", data)
   })
 
   socket.on('disconnect', () => {
@@ -85,3 +87,4 @@ app.use("/signup", signupRouter)
 app.use("/updateprofile", updateProfileRouter)
 app.use("/testdata", testDataRouter)
 app.use("/zip", zipRouter);
+app.use("/blogs", blogsRouter);
