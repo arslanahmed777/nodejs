@@ -1,29 +1,27 @@
-
 // importing models
 const Users = require("../models/users.model");
 
-
 async function signup(req, res) {
-    console.log(req.body);
-    let { name, email, password } = req.body;
-    const user = await Users.findOne({ email: email });
-    if (user) return res.status(200).json({ error: "This Email already exist in database", });
-    try {
-        const newuser = new Users({
-            name: name,
-            email: email,
-            password: password,
-        });
-        const newUser = await newuser.save()
-        email = newUser.email
-        password = newUser.password
-        res.send({ email, password })
-
-    } catch (error) {
-        console.log("Signup catch error:", error);
-        return res.send(error);
-    }
-
+  let { name, email, password } = req.body;
+  const user = await Users.findOne({ email: email });
+  if (user)
+    return res
+      .status(200)
+      .json({ error: "This Email already exist in database" });
+  try {
+    const newuser = new Users({
+      name: name,
+      email: email,
+      password: password,
+    });
+    const newUser = await newuser.save();
+    email = newUser.email;
+    password = newUser.password;
+    res.send({ email, password });
+  } catch (error) {
+    console.log("Signup catch error:", error);
+    return res.send(error);
+  }
 }
 
 // router.post("/signup", (req, res) => {
@@ -65,5 +63,5 @@ async function signup(req, res) {
 // });
 
 module.exports = {
-    signup,
+  signup,
 };
