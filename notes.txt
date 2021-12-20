@@ -117,3 +117,8 @@ module.exports = router;
 for progressbar https://flexiple.com/javascript-check-if-function/
 
 https://codesandbox.io/s/react-accordion-using-react-hooks-9uuvc?file=/components/Accordion.css
+
+
+https://github.com/Dynamsoft/dwt-react-advanced
+https://github.com/Dynamsoft/dwt-react-simple/blob/master/src/DynamsoftSDK.js
+https://www.dynamsoft.com/web-twain/docs/info/api/WebTwain_IO.html?ver=latest#httpupload
