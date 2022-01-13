@@ -122,3 +122,18 @@ https://codesandbox.io/s/react-accordion-using-react-hooks-9uuvc?file=/component
 https://github.com/Dynamsoft/dwt-react-advanced
 https://github.com/Dynamsoft/dwt-react-simple/blob/master/src/DynamsoftSDK.js
 https://www.dynamsoft.com/web-twain/docs/info/api/WebTwain_IO.html?ver=latest#httpupload
+
+
+What is Controller
+.Commmunicates between computer and other devices such as printers, scanners etc
+.they themselves are small computer having own compute
+.they translate message back and forth
+.connects via cable to connector called ports
+.they can be permantly mounted or flexible to be attatched  
+
+What is DMA
+Direct memory access (DMA) is the process of transferring data without the involvement of the processor itself
+or
+the abilit of a computer to access main memory
+It is often used for transferring data to/from input/output devices
+With DMA, the CPU can process other tasks while data transfer is being performed.

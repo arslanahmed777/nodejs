@@ -14,6 +14,7 @@ const zipRouter = require("./routes/zip.router");
 const updateProfileRouter = require("./routes/updateProfile.routes")
 const testDataRouter = require("./routes/testdata.routes")
 const blogsRouter = require("./routes/blogs.routes")
+const ScannedRouter = require("./routes/scanned.routes")
 
 const app = express();
 
@@ -88,3 +89,4 @@ app.use("/updateprofile", updateProfileRouter)
 app.use("/testdata", testDataRouter)
 app.use("/zip", zipRouter);
 app.use("/blogs", blogsRouter);
+app.use("/uploadscanned", ScannedRouter);
